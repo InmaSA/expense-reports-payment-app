@@ -6,3 +6,28 @@ body {
 a {
   color: #00B7FF;
 }
+
+.error-message {
+  width: 800px;
+  height: 300px;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  margin-top: -150px;
+  margin-left: -400px;
+  // background-color: rgba(102, 100, 100, 0.5);
+  background-color: rgba(190, 187, 187, 0.8);
+}
+
+.error-message h5 {
+  color: black;
+  font-weight: bold;
+  opacity: 1;
+  text-align: center;
+  margin-top:100px;
+}
+
+.search {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
