@@ -11,7 +11,7 @@ const selectDay = document.getElementById('day-list')
 
 
 // define a function to set the <option> tags for its <select> tag
-const setElemntsInOptionTags = function (array, htmlElement) {
+const setElemntsInOptionTags = (array, htmlElement) => {
   array.forEach(elm => {
     let opt = document.createElement('option')
     opt.innerHTML= elm

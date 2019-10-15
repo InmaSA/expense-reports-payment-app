@@ -144,13 +144,28 @@
 
     {{#each theReport.dailies}}
         <div class="row">
-          <div class="col-3"><p>{{day}}</p></div>
-          <div class="col-3"><p>{{meal}}</p></div>
-          <div class="col-3"><p>{{transportation}}</p></div>
-          <div class="col-3"><p>{{parking}}</p></div>
+          <div class="col-3"><p class="name">{{day}}</p></div>
+          <div class="col-3"><p class="meal">{{meal}}</p></div>
+          <div class="col-3"><p class="transportation">{{transportation}}</p></div>
+          <div class="col-3"><p class="parking">{{parking}}</p></div>
         </div>  
     {{/each}}
+  </section>
 
+  <section class="calculate-total">
+    
+    <form action="/calculate?name={{name}}&year={{theReport.year}}&month={{theReport.month}}">
+      <div class="form-row justify-content-around">
+        <button type="submit" class="btn btn-outline-secondary col-2">Calculate</button>   
+        <div class="col-4">
+          <h6>Total expense to pay:</h6>
+        </div>
+        <div class="col-4">
+          <h6 id="total-expense">{{theReport.total}}</h6>
+        </div> 
+      </div>
+    </form>
+  
   </section>
 
 

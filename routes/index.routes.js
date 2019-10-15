@@ -5,7 +5,7 @@ const router  = express.Router()
 const Employee = require('../models/employee.model')
 const MonthlyReport = require('../models/monthlyReport.model')
 
-
+const getTotalfromDB = require('../public/javascripts/calculateTotal')
 
 /* GET employees info from DB as the app starts running */
 router.get('/', (req, res, next) => {
@@ -72,7 +72,7 @@ router.get('/create-report', (req, res, next) => {
 
 
 
-/* we update de daily info for the selected employee, year and month */
+/* we update de daily info for the selected employee, year and month and show total */
 router.post(`/create-report`, (req,res, next) => {
   const {day, meal, transportation, parking} = req.body
   const {name, year, month} = req.query
@@ -94,12 +94,18 @@ router.post(`/create-report`, (req,res, next) => {
     employee_id = theEmployee._id
   })  
   
-  // now we update de dailies field in DB for the report we are working with
+  // now we update de dailies field in DB for the report we are working with and the total, and send the info in report.hbs
   MonthlyReport.findOneAndUpdate({year, month}, {$push: {dailies: {day, meal, transportation, parking}}}, {new:true})
   .populate(employee_id)
   .then(theReport => {
-    res.render('reports/report', {theReport, name})
-    console.log(theReport)
+    console.log(theReport.dailies)
+    let total = getTotalfromDB(theReport.dailies)
+    console.log(total)
+    MonthlyReport.findOneAndUpdate({year, month}, {total}, {new:true})
+    .then(theReport => {
+      res.render('reports/report', {theReport, name})
+      console.log(theReport)
+    })
   })
   .catch(err => console.log('error checking existing report and creating new ', err))
 

@@ -11,7 +11,8 @@ const monthlyReportScheema = new Schema ({
       transportation: Number,
       meal: Number,
       parking: Number
-  }]
+  }],
+  total: Number
 }, {timestamps: true})
 
 
