@@ -2,8 +2,10 @@
   <h1 id="hey">hola</h1>
 
   <section class="search">
+    <header>
+      <h3>Consult an existing report:</h3>  
+    </header>
 
-    <h3>Consult an existing report:</h3>  
     <form action="/get-report">
       <div class="form-row">
           <div class="col-4">
@@ -38,83 +40,121 @@
 
 
   <section class="set-data">
+    <header>
+      <h3>Create a new report:</h3>
+    </header>
 
-    <h3>Create a new report:</h3>
-
-    <form action="/create-report" method="POST">
-      <div class="form-row justify-content-around">
+      <div class="row justify-content-around">
 
         <div class="col-5">
+          <form action="/create-report">
 
-          <div class="form-group">
-            <label for="name-list">Employee name:</label>
-            <select name="name" class="form-control" id="name-list">
-              <option>Select</option>
-              {{#each employees}}
-                <option>{{this.name}}</option>
-              {{/each}}
-            </select> 
-          </div>
+            <p>First select employee and data:</p>  
+            <div class="form-group">
+              <select name="name" class="form-control">
+                <option>Employee name</option>
+                {{#each employees}}
+                  <option>{{this.name}}</option>
+                {{/each}}
+              </select>  
+            </div>
 
-          <div class="form-group">
-            <label for="year-list">Select year:</label> 
+            <div class="form-group">
               <select name="year" class="form-control" id="year-list">
-                <option>Select</option>
-                  {{!-- here comes option tags with the same year set as id and innerHTML from optionDate.js script --}}
-              </select>     
-          </div>
+                <option>year</option>
+                 {{!-- here comes option tags with the same year set as id and innerHTML from optionDate.js script --}}
+              </select>    
+            </div>
 
-          <div class="form-group">
-            <label>Select month:</label>
-            <select name="month" class="form-control" id="month-list">
-              <option>Select</option>
-                  {{!-- here comes option tags with the same month set as id and innerHTLM from optionDate.js script --}}
-            </select>   
-          </div>
+            <div class="form-group">
+              <select name="month" class="form-control" id="month-list">
+                <option>month</option>
+                {{!-- here comes option tags with the same month set as id and innerHTLM from optionDate.js script --}}
+              </select>   
+            </div>
 
-          <div class="form-group">
-            <label for="day-list">Select a day:</label>
-            <select name="day" class="form-control" id="day-list">
-                <option>Select</option>
-                {{!-- here comes option tags with the same day set as id and innerHTML from optionDate.js script --}}
-            </select> 
-          </div>
+            <button type="submit" class="btn btn-primary mb-2">Set</button>
+          </form>
 
+
+          {{#if theReport}}
+            <div class="employee-date">
+              <p id="employee">Employee name: {{name}}</p>
+              <p id="year">Year: {{theReport.year}}</h4>
+              <p id="month">Month: {{theReport.month}}</h4>
+            </div>
+          {{/if}} 
+           
         </div>
 
         <div class="col-5">
-         
-          <fieldset class="form-group">
-            <legend class="col-form-label pt-0">Meal:</legend>  
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="meal" id="meal-yes" value="1">
-              <label class="form-check-label" for="meal-yes">yes</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="meal" id="meal-no" value="0" checked>
-              <label class="form-check-label" for="meal-no">no</label>
-            </div>
-          </fieldset>
+          <form action="/create-report?name={{name}}&year={{theReport.year}}&month={{theReport.month}}" method="POST">
+            
+              <div class="form-group">
+                <label for="day-list">Select a day:</label>
+                <select name="day" class="form-control" id="day-list">
+                    <option>Select</option>
+                    {{!-- here comes option tags with the same day set as id and innerHTML from optionDate.js script --}}
+                </select> 
+              </div>
 
-          <div class="form-group">
-            <label for="transportation-input">Transportation:</label>
-            <input name="transportation" type="number" class="form-control" id="transportation-input">
-          </div>
+              <fieldset class="form-group">
+                <legend class="col-form-label pt-0">Meal:</legend>  
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="meal" id="meal-yes" value="1">
+                  <label class="form-check-label" for="meal-yes">yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="meal" id="meal-no" value="0" checked>
+                  <label class="form-check-label" for="meal-no">no</label>
+                </div>
+              </fieldset>
 
-          <div class="form-group">
-            <label for="parking-input">Parking:</label>
-            <input name="parking" type="number" class="form-control" id="parking-input">
-          </div>
+              <div class="form-group">
+                <label for="transportation-input">Transportation:</label>
+                <input name="transportation" type="number" class="form-control" id="transportation-input">
+              </div>
 
-          <button type="submit" class="btn btn-primary mb-2">Save</button>
+              <div class="form-group">
+                <label for="parking-input">Parking:</label>
+                <input name="parking" type="number" class="form-control" id="parking-input">
+              </div>
+
+              <button type="submit" class="btn btn-primary mb-2">Add reports</button>
+          </form>
         </div>
 
       </div>
-    </form>
     
+  </section>
 
+
+  <section class="reportDaylies-details">
+
+    <header>
+      <h5>Check the daily expenses added:</h5>
+    </header>  
+
+    <div class="row">
+      <div class="col-3"><h6>Day</h6></div>
+      <div class="col-3"><h6>Meal</h6></div>
+      <div class="col-3"><h6>Transportation</h6></div>
+      <div class="col-3"><h6>Parking</h6></div>
+    </div>  
+
+    {{#each theReport.dailies}}
+        <div class="row">
+          <div class="col-3"><p>{{day}}</p></div>
+          <div class="col-3"><p>{{meal}}</p></div>
+          <div class="col-3"><p>{{transportation}}</p></div>
+          <div class="col-3"><p>{{parking}}</p></div>
+        </div>  
+    {{/each}}
 
   </section>
+
+
+
 
 
 
