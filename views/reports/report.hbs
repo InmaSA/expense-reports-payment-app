@@ -3,8 +3,8 @@
 
   <section class="search">
 
-    <h3>Searh for an existing report:</h3>  
-    <form action="/getReport">
+    <h3>Consult an existing report:</h3>  
+    <form action="/get-report">
       <div class="form-row">
           <div class="col-4">
             <select name="name" class="form-control">
@@ -39,9 +39,9 @@
 
   <section class="set-data">
 
-    <h3>Start a new report:</h3>
+    <h3>Create a new report:</h3>
 
-    <form action="/addDailyReport" method="POST"></form>
+    <form action="/create-report" method="POST">
       <div class="form-row justify-content-around">
 
         <div class="col-5">
@@ -87,23 +87,23 @@
           <fieldset class="form-group">
             <legend class="col-form-label pt-0">Meal:</legend>  
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="meal" id="meal-yes" value="option1">
+              <input class="form-check-input" type="radio" name="meal" id="meal-yes" value="1">
               <label class="form-check-label" for="meal-yes">yes</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="meal" id="meal-no" value="option2" checked>
+              <input class="form-check-input" type="radio" name="meal" id="meal-no" value="0" checked>
               <label class="form-check-label" for="meal-no">no</label>
             </div>
           </fieldset>
 
           <div class="form-group">
             <label for="transportation-input">Transportation:</label>
-            <input name="transportation" type="text" class="form-control" id="transportation-input" placeholder="Enter kilometers (e.g. 7)">
+            <input name="transportation" type="number" class="form-control" id="transportation-input">
           </div>
 
           <div class="form-group">
             <label for="parking-input">Parking:</label>
-            <input name="parking" type="text" class="form-control" id="parking-input" placeholder="Enter parking expenses in $ (e.g. 25)">
+            <input name="parking" type="number" class="form-control" id="parking-input">
           </div>
 
           <button type="submit" class="btn btn-primary mb-2">Save</button>

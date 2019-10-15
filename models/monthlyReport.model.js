@@ -7,7 +7,7 @@ const monthlyReportScheema = new Schema ({
   year: Number,
   month: String,
   dailies: [{
-      day: Number,
+      day: String,
       transportation: Number,
       meal: Number,
       parking: Number
