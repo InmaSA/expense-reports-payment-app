@@ -1,55 +1,18 @@
-<main class="container">
-  <h1 id="hey">hola</h1>
+<main>
 
-  <section class="search">
-    <header>
-      <h3>Consult an existing report:</h3>  
-    </header>
+  <header class="hero">
+    <h1>Consult an existing report or create a new one</h3>
+  </header>
 
-    <form action="/get-report">
-      <div class="form-row">
-          <div class="col-4">
-            <select name="name" class="form-control">
-              <option>Employee name</option>
-              {{#each employees}}
-                <option>{{this.name}}</option>
-              {{/each}}
-            </select> 
-          </div> 
-
-          <div class="col-3">
-            <select name="year" class="form-control" id="year-list">
-              <option>year</option>
-                 {{!-- here comes option tags with the same year set as id and innerHTML from optionDate.js script --}}
-             </select>  
-          </div> 
-
-          <div class="col-3">
-            <select name="month" class="form-control" id="month-list">
-              <option>month</option>
-                {{!-- here comes option tags with the same month set as id and innerHTLM from optionDate.js script --}}
-            </select> 
-          </div>
-
-         <button type="submit" class="btn btn-outline-secondary col-2">Search</button>
-
-      </div>
-     
-    </form>
-  </section>
-
-
-  <section class="set-data">
-    <header>
-      <h3>Create a new report:</h3>
-    </header>
-
+  <div class="container">
+    
+    <section class="set-data">
       <div class="row justify-content-around">
 
         <div class="col-5">
           <form action="/create-report">
 
-            <p>First select employee and data:</p>  
+            <p>First select employee and date:</p>  
             <div class="form-group">
               <select name="name" class="form-control">
                 <option>Employee name</option>
@@ -73,7 +36,7 @@
               </select>   
             </div>
 
-            <button type="submit" class="btn btn-primary mb-2">Set</button>
+            <button type="submit" class="btn btn-primary">Search</button>
           </form>
 
 
@@ -92,7 +55,7 @@
             
               <div class="form-group">
                 <label for="day-list">Select a day:</label>
-                <select name="day" class="form-control" id="day-list">
+                <select name="day" class="form-control day-list">
                     <option>Select</option>
                     {{!-- here comes option tags with the same day set as id and innerHTML from optionDate.js script --}}
                 </select> 
@@ -120,7 +83,7 @@
                 <input name="parking" type="number" class="form-control" id="parking-input">
               </div>
 
-              <button type="submit" class="btn btn-primary mb-2">Add reports</button>
+              <button type="submit" class="btn btn-primary">Add daily report</button>
           </form>
         </div>
 
@@ -129,44 +92,120 @@
   </section>
 
 
-  <section class="reportDaylies-details">
+  <section class="report-details">
 
     <header>
-      <h5>Check the daily expenses added:</h5>
+      <h5>Daily expense reported:</h5>
     </header>  
 
-    <div class="row">
-      <div class="col-3"><h6>Day</h6></div>
-      <div class="col-3"><h6>Meal</h6></div>
-      <div class="col-3"><h6>Transportation</h6></div>
-      <div class="col-3"><h6>Parking</h6></div>
+    <hr>
+
+    <div class="row justify-content-around">
+      <div class="col-2 cell"><h6>Day</h6></div>
+      <div class="col-2 cell"><h6>Meal (units)</h6></div>
+      <div class="col-2 cell"><h6>Transportation (km)</h6></div>
+      <div class="col-2 cell"><h6>Parking ($)</h6></div>
+      <div class="col-2 cell"></div>
     </div>  
 
+    <hr>  
+
     {{#each theReport.dailies}}
-        <div class="row">
-          <div class="col-3"><p class="name">{{day}}</p></div>
-          <div class="col-3"><p class="meal">{{meal}}</p></div>
-          <div class="col-3"><p class="transportation">{{transportation}}</p></div>
-          <div class="col-3"><p class="parking">{{parking}}</p></div>
-        </div>  
+        <div class="row justify-content-around detail">
+          <div class="col-2 cell"><p class="name">{{day}}</p></div>
+          <div class="col-2 cell"><p class="meal">{{meal}}</p></div>
+          <div class="col-2 cell"><p class="transportation">{{transportation}}</p></div>
+          <div class="col-2 cell"><p class="parking">{{parking}}</p></div>
+          <div class="col-2 cell">
+            <a href="/edit?name={{name}}&&_id={{_id}}&&day={{day}}&&meal={{meal}}&&transportation={{transportation}}&&parking={{parking}}" 
+              class="btn btn-warning btn-sm"
+              >Edit
+            </a>
+          </div> 
+        </div> 
+        <hr> 
     {{/each}}
   </section>
 
   <section class="calculate-total">
-    
-    <form action="/calculate?name={{name}}&year={{theReport.year}}&month={{theReport.month}}">
-      <div class="form-row justify-content-around">
-        <button type="submit" class="btn btn-outline-secondary col-2">Calculate</button>   
-        <div class="col-4">
-          <h6>Total expense to pay:</h6>
-        </div>
-        <div class="col-4">
-          <h6 id="total-expense">{{theReport.total}}</h6>
-        </div> 
+
+    <div class="form-row justify-content-around">
+      <div class="col-4">
+        <h6>Total expense to pay:</h6>
       </div>
-    </form>
-  
+      <div class="col-4">
+        <h6 id="total-expense">{{theReport.total}} $</h6>
+      </div> 
+    </div>
   </section>
+
+
+
+
+
+
+    {{#if dailyReport }}
+        <div class="edit row" id="edit-window">
+           <div class="col-6"> 
+              <h5>Current values:</h5>
+              <hr>
+              <div class="row">
+                <div class="col-6">
+                  <p>day of month:</p>
+                  <p>meal units:</p>
+                  <p>transportation km:</p>
+                  <p>parking expenses:</p>
+                </div>
+                <div class="col-6">
+                  <p>{{dailyReport.day}}</p>
+                  <p>{{dailyReport.meal}}</p>
+                  <p>{{dailyReport.transportation}}</p>
+                  <p>{{dailyReport.parking}}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <form action="/update?cId={{dailyReport._id}}&&cDay={{dailyReport.day}}&&cMeal={{dailyReport.meal}}&&cTransportation={{dailyReport.transportation}}&&cParking={{dailyReport.parking}}" method="POST">
+                <div class="form-group">
+                  <label for="day-list">Select a day:</label>
+                  <select name="day" class="form-control day-list">
+                      <option>Select</option>
+                      {{!-- here comes option tags with the same day set as id and innerHTML from optionDate.js script --}}
+                  </select> 
+                </div>
+
+                <fieldset class="form-group">
+                  <legend class="col-form-label pt-0">Meal:</legend>  
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="meal" id="meal-yes" value="1">
+                    <label class="form-check-label" for="meal-yes">yes</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="meal" id="meal-no" value="0" checked>
+                    <label class="form-check-label" for="meal-no">no</label>
+                  </div>
+                </fieldset>
+
+                <div class="form-group">
+                  <label for="transportation-input">Transportation:</label>
+                  <input name="transportation" type="number" class="form-control" id="transportation-input">
+                </div>
+
+                <div class="form-group">
+                  <label for="parking-input">Parking:</label>
+                  <input name="parking" type="number" class="form-control" id="parking-input">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Change daily report</button> 
+              </form>
+            </div>
+            <a href="#" class="btn btn-dark" id="close-btn">Close</a>
+          </div>
+    {{/if}}          
+
+
+
 
 
 
@@ -176,8 +215,9 @@
     {{#if message }}
       <div class="error-message">
         <h5>{{ message }}</h5>
-        <a href="/" class="btn btn-dark">Ok, I've goot it!</a>
+        <a href="/" class="btn btn-outline-danger">Ok, I've got it!</a>
         </div>
     {{/if}}
+  </div>
 
 </main>

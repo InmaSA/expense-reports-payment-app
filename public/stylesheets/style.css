@@ -1,33 +1,100 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+/*----------------- HEADER STYLE ---------------*/
+.hero {
+  background-color: #2222af;
+  padding: 20px;
+  color: white; }
 
-a {
-  color: #00B7FF; }
+.hero h1 {
+  font-size: 2em;
+  text-align: center;
+  text-transform: uppercase; }
 
+/*------------- SET-DATA SECTION STYLE---------------*/
+.set-data {
+  margin: 30px auto; }
+
+.employee-date {
+  margin-top: 10px;
+  background-color: #e2dede;
+  padding: 20px 20px 5px; }
+
+/*------------- REPORTDAILY-DETAILS SECTION STYLE---------------*/
+.report-details {
+  margin-top: 50px;
+  border: 0.3px solid #9b9999;
+  padding: 20px 10px; }
+
+.report-details h5 {
+  margin-left: 80px;
+  color: #2222af;
+  font-weight: bold; }
+
+.report-details h6 {
+  font-weight: bold; }
+
+.detail {
+  height: 15px; }
+
+.cell {
+  text-align: center; }
+
+/*------------- CALCULATE-TOTAL SECTION STYLE---------------*/
+.calculate-total {
+  border-left: 0.3px solid #9b9999;
+  border-right: 0.3px solid #9b9999;
+  border-bottom: 0.3px solid #9b9999;
+  margin-bottom: 80px;
+  padding: 20px 0px; }
+
+.calculate-total h6 {
+  font-weight: bold; }
+
+/*--------------- EDIT WINDOW STYLE---------------*/
+.edit {
+  width: 800px;
+  height: 500px;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  margin-top: -150px;
+  margin-left: -400px;
+  background-color: white;
+  border: 2px solid #9b9999;
+  padding: 20px; }
+
+.out {
+  display: none; }
+
+#close-btn {
+  display: block;
+  margin: 40px auto;
+  width: 150px;
+  height: 40px;
+  text-align: center; }
+
+/*------------- ERROR MESSAGE WINDOW STYLE---------------*/
 .error-message {
   width: 800px;
   height: 300px;
   position: fixed;
-  top: 25%;
+  top: 40%;
   left: 50%;
   margin-top: -150px;
   margin-left: -400px;
-  background-color: rgba(190, 187, 187, 0.8); }
+  background-color: white;
+  border: 2px solid #9b9999;
+  color: red; }
 
 .error-message h5 {
-  color: black;
   font-weight: bold;
   opacity: 1;
   text-align: center;
   margin-top: 100px; }
 
-.search {
-  margin-top: 50px;
-  margin-bottom: 50px; }
-
-.employee-date {
-  background-color: #e2dede;
-  padding: 20px 20px 5px; }
+.error-message a {
+  display: block;
+  margin: 20px auto;
+  width: 200px;
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */

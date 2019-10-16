@@ -1,9 +1,5 @@
-// we get from report.hbs the field <p> tags with the data we need for the calculation
-// const meals = document.getElementsByClassName("meal")
-// const transport = document.getElementsByClassName("transportation")
-// const parking = document.getElementsByClassName("parking")
 
-// TREATE THE INFO FROM TE DB
+// TREAT THE INFO FROM TE DB
 // the info in DB is in an array (dailies) of objects, each one of them has the keys meal, transportation and parfing
 const getTotalfromDB = (array) => {
   let meals = [], transportation = [], parking = []
@@ -12,11 +8,6 @@ const getTotalfromDB = (array) => {
     transportation.push(elm.transportation)
     parking.push(elm.parking)
   })
-  // for(let i =0; i< array.length; i++) {
-  //   meals.push(array[i].meal)
-  //   transportation.push(array[i].transportation)
-  //   parking.push(array[i].parking)
-  // }
   return calcTotalExpense(meals, transportation, parking)
 }
 

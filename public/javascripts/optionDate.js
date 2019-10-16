@@ -5,9 +5,9 @@ const days = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,
 
 
 // get the <select> elements year, month and days from report.hbs
-const selectYear = document.getElementsByName('year')
-const selectMonth = document.getElementsByName('month')
-const selectDay = document.getElementById('day-list')
+const selectYear = document.getElementById('year-list')
+const selectMonth = document.getElementById('month-list')
+const selectDay = document.getElementsByClassName('day-list')
 
 
 // define a function to set the <option> tags for its <select> tag
@@ -24,10 +24,11 @@ const setElemntsInOptionTags = (array, htmlElement) => {
 
 // use the function for every <select> tag
 
-setElemntsInOptionTags(years, selectYear[0])
-setElemntsInOptionTags(years, selectYear[1])
+setElemntsInOptionTags(years, selectYear)
+setElemntsInOptionTags(months, selectMonth)
+setElemntsInOptionTags(days, selectDay[0])
+setElemntsInOptionTags(days, selectDay[1])
 
-setElemntsInOptionTags(months, selectMonth[0])
-setElemntsInOptionTags(months, selectMonth[1])
 
-setElemntsInOptionTags(days, selectDay)
+
+
