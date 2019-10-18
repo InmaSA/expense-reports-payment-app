@@ -1,0 +1,18 @@
+version : '3'
+
+services:
+
+  app:
+    build: ./
+    container_name: node
+    expose: 
+      - ${APP_SERVER_PORT}
+    environment: 
+      API_SERVER_PORT: ${APP_SERVER_PORT}
+      DB_URI: ${DB_URI}
+    ports:
+      - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
+    volumes: 
+      - ./routes:/srv/app/expense-reports-payment/routes
+    command: 
+      npm run dev
