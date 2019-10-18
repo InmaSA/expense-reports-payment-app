@@ -8,7 +8,7 @@
 
 2. Clone the project
 
-    We’ll download the code from its repository on BitBucket.
+    Download the code from this repository.
 
 3. Run the application
 
@@ -25,74 +25,7 @@ ___
 
 ## 1.- Install prerequisites
 
-For now, this project has been mainly created for Unix `(Linux/MacOS)`. Perhaps it could work on Windows but we aren't sure.
-
-All requisites should be available for your distribution. The most important are :
-
-* [Git](https://git-scm.com/downloads)
-* [Docker CE for Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce-1)
-* [Docker CE for MacOS](https://store.docker.com/editions/community/docker-ce-desktop-mac)
-* [Docker CE Edge for MacOS (v.18.05.0-cd-mac67)](https://download.docker.com/mac/edge/25042/Docker.dmg)
-
-**Docker-sync for MacOS**
-
-If you use a MacOS laptop you must need install Docker-sync, in this case you can use this command:
-
-```sh 
-gem install docker-sync
-```
-
-**How to execute docker without sudo in Linux?**
-
-To execute docker without need use sudo you can use this tip (only for Ubuntu):
-
-```sh
-sudo gpasswd -a $USER docker
-```
-
-```sh
-sudo setfacl -m user:$USER:rw /var/run/docker.sock
-```
-
-**How to obtain a Docker good performance in MacOS?**
-
-###### 1.- Computer, Cores & RAM
-Go to Docker > Preferences > Advanced and set the "computing resources dedicated to Docker" with the correct values for your PC.
-
-###### 2.- Docker Disk Type
-Set the Overlay2 Filesystem in Daemon > Advanced. Basically, you want to add a property of "storage-driver": "overlay2" (check if you need add "," at the end of the line).
-
-**How to update docker-compose Linux&MacOS**
-
-To update docker-compose to the correct version try to execute this commands:
-
-```sh
-sudo curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-```
-
-
-### Software version
-
-* Docker: 18.09.02-ce Linux/MacOS
-* Docker-compose: 1.23.2
-* Python: 2.7.12
-  - docker==3.2.1
-  - docker-compose==1.8.0
-  - docker-py==1.10.6
-  - docker-pycreds==0.2.2
-  - dockerpty==0.4.1
-* Docker-sync: 0.5.11
-
-
-
-This project use the following ports :
-
-| Server             | Port  |
-|--------------------|-------|
-| Node server        | 3000  |
-
-
+You need to have docker installed.
 
 ## 2.- Clone the project
 
