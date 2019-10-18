@@ -7,7 +7,7 @@ ObjectId = require('mongodb').ObjectID
 const Employee = require('../models/employee.model')
 const MonthlyReport = require('../models/monthlyReport.model')
 
-const getTotalfromDB = require('../public/javascripts/calculateTotal')
+const {getTotalfromDB} = require('../public/javascripts/calculateTotal')
 
 /* GET employees info from DB as the app starts running */
 router.get('/', (req, res, next) => {

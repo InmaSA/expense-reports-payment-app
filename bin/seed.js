@@ -4,15 +4,11 @@ const Employee = require('../models/employee.model')
 require('../configs/mongoose.config')
 
 const employee = [
-  {
-    name: "Elisabeth Bennet",
-    employeeNum: 100
-  },
-  {
-    name: "Fitzwilliam Darcy",
-    employeeNum: 200
-
-  }
+  {name: "Jhon Doe"},
+  {name: "Elisabeth Bennet"},
+  {name: "Fitzwilliam Darcy"},
+  {name: "Luke SkyWalker"},
+  {name: "Leia Organa"}
 ]
 
 

@@ -68,4 +68,4 @@ const calcTotalExpense = (meals, transport, parking) => {
   return mealsExpense + kmExpense + parkingExpense
 }
 
-module.exports = getTotalfromDB
+module.exports = {addData, totalExpense, calcTotalExpense, getTotalfromDB}
